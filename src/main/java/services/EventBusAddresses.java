@@ -1,7 +1,8 @@
 package services;
 
 public interface EventBusAddresses {
-
-  String ROUTING_MESSAGE = "routing";
-
+    //общий адрес для получения сообщений
+    String ROUTING_MESSAGE = "routing";
+    //префикс адресов при роутинге сообщений
+    String CELL_ADDRESS_PREFIX = "/cell/";
 }

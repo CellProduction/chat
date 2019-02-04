@@ -7,6 +7,7 @@ import io.vertx.core.json.Json;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
+import static services.EventBusAddresses.CELL_ADDRESS_PREFIX;
 import static services.EventBusAddresses.ROUTING_MESSAGE;
 
 /**
@@ -15,7 +16,6 @@ import static services.EventBusAddresses.ROUTING_MESSAGE;
 public class MessageRouterVerticle extends AbstractVerticle {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketServerVerticle.class);
-    public static final String CELL_ADDRESS_PREFIX = "/cell/";
 
     @Override
     public void start() {

@@ -1,4 +1,6 @@
 import io.vertx.core.Vertx;
+import services.MessageRouterVerticle;
+import services.WebSocketServerVerticle;
 
 public class Starter {
     public static void main(String[] args) {
@@ -6,5 +8,7 @@ public class Starter {
     }
 
     private static void deploy(Vertx vertx) {
+        vertx.deployVerticle(new WebSocketServerVerticle());
+        vertx.deployVerticle(new MessageRouterVerticle());
     }
 }

@@ -8,6 +8,9 @@ import io.vertx.core.logging.LoggerFactory;
 
 import static services.EventBusAddresses.ROUTING_MESSAGE;
 
+/**
+ * WS сервер для приема сообщений
+ */
 public class WebSocketServerVerticle extends AbstractVerticle {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketServerVerticle.class);

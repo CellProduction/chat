@@ -1,5 +1,8 @@
 package services;
 
+/**
+ * Константные переменные для адресации сообщений
+ */
 public interface EventBusAddresses {
     //общий адрес для получения сообщений
     String ROUTING_MESSAGE = "routing";

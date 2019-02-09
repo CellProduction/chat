@@ -10,6 +10,9 @@ import io.vertx.ext.web.handler.BodyHandler;
 
 import static services.EventBusAddresses.ROUTING_MESSAGE;
 
+/**
+ * Rest для приема сообщений
+ */
 public class RestServerVerticle extends AbstractVerticle {
 
     public static final Logger LOG = LoggerFactory.getLogger(RestServerVerticle.class);

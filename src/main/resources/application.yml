@@ -1,0 +1,5 @@
+server:
+  websocket:
+    port: 8085
+  rest:
+    port: 8081

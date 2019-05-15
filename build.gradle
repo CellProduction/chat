@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'io.cell'
 version '1.0-SNAPSHOT'
+mainClassName = 'io.cell.Starter'
 
 sourceCompatibility = 1.8
 
@@ -15,7 +17,16 @@ dependencies {
     compile group: 'io.vertx', name: 'vertx-core', version: versionVertx
     compile group: 'io.vertx', name: 'vertx-web', version: versionVertx
     compile group: 'io.vertx', name: 'vertx-config', version: versionVertx
-    compile group: 'io.vertx', name: 'vertx-config-yaml', version: versionVertx
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+    baseName = rootProject.name + '-fat'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

@@ -1,4 +1,4 @@
-package entities;
+package io.cell.entities;
 
 /**
  * Сущность обобщенного сообщения для чата

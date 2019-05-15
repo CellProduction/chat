@@ -1,4 +1,4 @@
-package services;
+package io.cell.services;
 
 /**
  * Константные переменные для адресации сообщений

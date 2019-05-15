@@ -1,4 +1,4 @@
-package services;
+package io.cell.services;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.MessageConsumer;
@@ -6,7 +6,7 @@ import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-import static services.EventBusAddresses.ROUTING_MESSAGE;
+import static io.cell.services.EventBusAddresses.ROUTING_MESSAGE;
 
 /**
  * WS сервер для приема сообщений
@@ -17,9 +17,11 @@ public class WebSocketServerVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
+        Integer port = 8088;
         vertx.createHttpServer()
                 .websocketHandler(this::createWebSocketServer)
-                .listen(8080);
+                .listen(port);
+        LOG.info("Started: WS vertical");
     }
 
     private void createWebSocketServer(ServerWebSocket wsServer) {

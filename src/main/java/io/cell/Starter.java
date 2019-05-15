@@ -14,9 +14,7 @@ public class Starter {
         ConfigStoreOptions store = new ConfigStoreOptions()
             .setType("file")
             .setFormat("json")
-            .setConfig(new JsonObject()
-                .put("path", "config.json")
-            );
+            .setConfig(new JsonObject().put("path", "config.json"));
         ConfigRetriever retriever = ConfigRetriever.create(Vertx.vertx(), new ConfigRetrieverOptions().addStore(store));
         deploy(Vertx.vertx());
     }

@@ -22,6 +22,7 @@ dependencies {
 }
 
 task fatJar(type: Jar) {
+    dependsOn clean
     manifest {
         attributes 'Implementation-Version': version,
                 'Main-Class': mainClassName

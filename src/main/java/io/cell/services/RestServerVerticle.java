@@ -8,6 +8,8 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
+import java.util.Optional;
+
 import static io.cell.services.EventBusAddresses.ROUTING_MESSAGE;
 
 /**
@@ -21,12 +23,13 @@ public class RestServerVerticle extends AbstractVerticle {
     public void start() {
         HttpServer httpServer = vertx.createHttpServer();
         Router httpRouter = Router.router(vertx);
-        Integer port = 8089;
+        Integer defaultPort = 8080;
+        String port = Optional.ofNullable(System.getenv("PORT")).orElse(defaultPort.toString());
         httpRouter.route().handler(BodyHandler.create());
         httpRouter.post("/message").handler(this::messageRecivedHandler);
         httpServer.requestHandler(httpRouter::accept);
-        httpServer.listen(port);
-        LOG.info("Started: rest vertical");
+        httpServer.listen(Integer.valueOf(port));
+        LOG.info("Started: rest vertical. Port: " + httpServer.actualPort());
     }
 
     private void messageRecivedHandler(RoutingContext requestHandler) {

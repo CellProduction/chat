@@ -2,9 +2,12 @@ package io.cell.services;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.MessageConsumer;
+import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.ServerWebSocket;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+
+import java.util.Optional;
 
 import static io.cell.services.EventBusAddresses.ROUTING_MESSAGE;
 
@@ -17,11 +20,12 @@ public class WebSocketServerVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
-        Integer port = 8088;
-        vertx.createHttpServer()
+        Integer defaultPort = 8090;
+        String port = Optional.ofNullable(System.getenv("WS_PORT")).orElse(defaultPort.toString());
+        HttpServer httpServer = vertx.createHttpServer()
                 .websocketHandler(this::createWebSocketServer)
-                .listen(port);
-        LOG.info("Started: WS vertical");
+                .listen(Integer.valueOf(port));
+        LOG.info("Started: WS vertical. Port: " + httpServer.actualPort());
     }
 
     private void createWebSocketServer(ServerWebSocket wsServer) {

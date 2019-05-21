@@ -1,8 +1,5 @@
 FROM openjdk:8
-ADD build/libs/chat-fat-1.0-SNAPSHOT.jar chat.jar
-EXPOSE 8088 8089
+COPY build/libs/chat-fat-1.0-SNAPSHOT.jar chat.jar
+EXPOSE $PORT $WS_PORT
 
-ENV WS_PORT 8088
-ENV REST_PORT 8089
-
-CMD ["java -jar chat.jar"]
+CMD ["java",  "-jar", "-Dhttp.port=$PORT", "-Dws.port=$WS_PORT", "chat.jar"]
